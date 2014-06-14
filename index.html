@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Qooxdoo Demo:</title>
+    <script src="js/q-4.0.min.js"></script>
+    <link href="css/styles.css" type="text/css" rel="stylesheet">
+    <link href="css/smashing_styles.min.css" type="text/css" rel="stylesheet">
+  </head>
+  
+  <body>
+    
+    <!--
+    -->
+  </body>
+  <script>
+    q.ready(function() {
+      buildMockUI();
+      q('input:first').focus();
+      setInterval(function() {
+        animateSponsor('spnsr1', 1750);
+      }, 12500);
+      setInterval(function() {
+        animateSponsor('spnsr2', 2850);
+      }, 31800);
+      setInterval(function() {
+        animateSponsor('spnsr3', 950);
+      }, 8000);
+    });
+
+    function animateSponsor(el, delay) {
+      setTimeout(function() {
+        q('.' + el + '').fadeOut().once("animationEnd", function() {
+          setTimeout(function() {
+            q('.' + el + '').fadeIn();
+          }, delay + delay);
+        });
+      }, delay + delay);
+    }
+    
+    function getArticleText() {
+      var text = '<h2><a title="Read \'Color Theory for Designers, Part 1: The Meaning of Color\'" rel="bookmark" href="#">Color Theory for Designers, Part 1: The Meaning of Color</a></h2><ul class="pmd clearfix"><li class="author">By <a title="Posts by Cameron Chapman" href="#" class="post-author" rel="author">Cameron Chapman</a></li><li class="date">January 28th, 2010</li><li class="tags"><a href="#">Color Theory</a><a href="#">Colors</a><a href="#">Legacy</a></li><li class="comments"><a title="Comment on Color Theory for Designers, Part 1: The Meaning of Color" href="#comments">254 Comments</a> </li></ul>';
+      text += "<p>Color in design is very subjective. What evokes one reaction in one person may evoke a very different reaction in somone else. Sometimes this is due to personal preference, and other times due to cultural background. Color theory is a science in itself. Studying how colors affect different people, either individually or as a group, is something some people build their careers on. And there\'s a lot to it. Something as simple as changing the exact hue or saturation of a color can evoke a completely different feeling. Cultural differences mean that something that\'s happy and uplifting in one country can be depressing in another.</p>";
+      text += '<p>This is the first in a three-part series on color theory. Here we\'ll discuss the meanings behind the different color families, and give some examples of how these colors are used (with a bit of analysis for each). In <a href="#">Part 2</a> we\'ll talk about how hue, chroma, value, saturation, tones, tints and shades affect the  way we perceive colors. And in <a href="#">Part 3</a> we\'ll discuss how to create effective color palettes for your own designs.</p>';
+      text += '<h3>Warm Colors</h3><p>Warm colors include red, orange, and yellow, and variations of those three colors. These are the colors of fire, of fall leaves, and of sunsets and sunrises, and are generally energizing, passionate, and positive.</p><p>Red and yellow are both primary colors, with orange falling in the middle, which means warm colors are all truly warm and aren\'t created by combining a warm color with a cool color. Use warm colors in your designs to reflect passion, happiness, enthusiasm, and energy.</p><p>....</p>';
+      return text;
+    }
+
+    var buildMockUI = function() {
+      var appendNav = function() {
+        var nav = q.create("<nav>").setAttribute('class', 'toplevel clearfix').setAttribute("id", "top");
+        var mini = q.create("<div>").addClass('mini');
+        var title = q.create("<h1>").setHtml("<span class='sr'>Qooxdoo</span>");
+        var home_link = q.create("<a>").setAttribute("href", "http://www.qooxdoo.org").setStyle("border: 0px none;");
+        var logo = q.create("<img>").setAttribute("src", "images/logo.png").setAttribute("alt", "Qooxdoo").appendTo(home_link);
+        var mnb = q.create("<div>").addClass("mnb");
+        var ntb = q.create("<a>").addClass("ntb").setAttribute("src", "#mn").setHtml("Menu");
+        var stb = q.create("<a>").addClass("stb").setAttribute("src", "#ms").setHtml("Search");
+
+        //main nav
+        var list = q.create("<ul>").setAttribute("class", "nw clearfix").setAttribute("id", "menu-network-menu");
+        var list_item1 = q.create("<li>").addClass("current").setHtml('<a href="http://www.smashingmagazine.com" style="border: 0px none;"><img title="Jump to the front page" alt="Smashing Magazine" src="images/logo.png"></a>');
+        var list_item2 = q.create("<li>").setAttribute("class", "menu-item menu-item-type-post_type menu-item-object-page menu-item-77918 menu-item-books").setAttribute("id", "menu-item-77918").setHtml('<a href="http://www.smashingmagazine.com/books/">Books</a>');
+        var list_item3 = q.create("<li>").setAttribute("class", "cody menu-item menu-item-type-post_type menu-item-object-page menu-item-78659 menu-item-ebooks").setAttribute("id", "menu-item-78659").setHtml('<a href="http://www.smashingmagazine.com/ebooks/">eBooks</a>');
+        var list_item4 = q.create("<li>").setAttribute("class", "menu-item menu-item-type-post_type menu-item-object-page menu-item-85386 menu-item-workshops").setAttribute("id", "menu-item-85386").setHtml('<a href="http://www.smashingmagazine.com/smashing-workshops/">Workshops</a>');
+        var list_item5 = q.create("<li>").setAttribute("class", "menu-item menu-item-type-custom menu-item-object-custom menu-item-2 menu-item-job-board").setAttribute("id", "menu-item-2").setHtml('<a href="http://jobs.smashingmagazine.com/">Job Board</a>');
+
+        //aux menu
+        var ch_list = q.create("<ul>").setAttribute("class", "ch");
+        var ch_li1 = q.create("<li>").addClass("rss").setHtml('<a title="Subscribe to our RSS-feed (120K)" href="http://www.smashingmagazine.com/feed/">RSS</a>');
+        var ch_li2 = q.create("<li>").addClass("fb").setHtml('<a title="Join our Facebook page! (206k)" href="http://www.facebook.com/smashmag">Facebook</a>');
+        var ch_li3 = q.create("<li>").addClass("tw").setHtml('<a title="Follow us on Twitter! (785k)" href="http://twitter.com/smashingmag">Twitter</a>');
+        var ch_li4 = q.create("<li>").addClass("nl").setHtml('<a title="Subscribe to our Email Newsletter (180k)" href="http://www.smashingmagazine.com/the-smashing-newsletter/">Newsletter</a>');
+        
+        home_link.appendTo(title);
+        title.appendTo(mini);
+        mini.appendTo(nav);
+        
+        ntb.appendTo(mnb);
+        stb.appendTo(mnb);
+        mnb.appendTo(nav);
+        
+        list_item1.appendTo(list);
+        list_item2.appendTo(list);
+        list_item3.appendTo(list);
+        list_item4.appendTo(list);
+        list_item5.appendTo(list);
+        list.appendTo(nav);
+
+        ch_li1.appendTo(ch_list);
+        ch_li2.appendTo(ch_list);
+        ch_li3.appendTo(ch_list);
+        ch_li4.appendTo(ch_list);
+        ch_list.appendTo(nav);
+        
+        nav.appendTo(document.body);
+      }
+
+      var appendMainStack = function() {
+        var fluid = q.create("<div>").setAttribute("class", "fluid clearfix");
+        var grid = q.create("<div>").setAttribute("class", "grid clearfix");
+        var col_sn = q.create("<div>").setAttribute("class", "col sn");
+        var text_col = q.create("<div>").setAttribute("class", "col main single");
+        var article = q.create("<article>").setAttribute("class", "post-9634 post type-post status-publish format-standard hentry category-design tag-color-theory tag-colors tag-legacy post");
+        article.setHtml(getArticleText());
+        
+        //main stack text...
+        article.appendTo(text_col);
+        text_col.appendTo(grid);
+        col_sn.appendTo(grid);
+        
+        grid.appendTo(fluid);
+        fluid.appendTo(q('.cc'));        
+      }
+      
+      var appendRightCol = function() {
+        var sb = q.create("<div>").setAttribute("id", "wpsidebar").addClass("sb");
+        var side_col = q.create("<div>").setAttribute("class", "col side");
+        var sf = q.create("<div>").addClass("sf");
+        var search_form = q.create("<form>").setAttribute("target", "_top").setAttribute("action", "#").setAttribute("method", "get");
+        var search_text = q.create("<input>").setAttribute("type", "text").setAttribute("placeholder", "e.g. Responsive design").setAttribute("name", "q").setAttribute("id", "magazine-search");
+        var search_button = q.create("<button>").setAttribute("type", "submit").setHtml("Search");
+        var seach_label = q.create("<label>").setAttribute("for", "magazine-search").setHtml("Search on Smashing Magazine");
+        var ad_wrapper = q.create("<div>").setAttribute("class", "bw faw").setStyle("height", "380px");
+        var spnsrlist_wrapper = q.create("<div>").setAttribute("id", "spnsrlist-a");
+        var ad_list = q.create("<ul>").addClass("bnnr-list");
+        var sample1li = q.create("<li>").addClass("spnsr1");
+        var sample2li = q.create("<li>").addClass("spnsr2");
+        var sample3li = q.create("<li>").setAttribute("class", "double spnsr3");
+        var sample1_img = q.create("<a>").setAttribute("style", "width: 200px; height: 120px; background: red; display:block;");
+        var sample1_text = q.create("<a>").setAttribute("href", "#").setHtml("Sample sponsor");
+        var sample2_img = q.create("<a>").setAttribute("style", "width: 200px; height: 120px; background: yellow; display:block;");
+        var sample2_text = q.create("<a>").setAttribute("href", "#").setHtml("Sample 2 sponsor");
+        var sample3_img = q.create("<a>").setAttribute("style", "width: 410px; height: 120px; background: lightblue; display:block;");
+        var sample3_text = q.create("<a>").setAttribute("href", "#").setHtml("Sample 3 sponsor");
+
+        // search form
+        seach_label.appendTo(search_form);
+        search_text.appendTo(search_form);
+        search_button.appendTo(search_form);
+        search_form.appendTo(sf);
+        
+        //wrapper
+        sf.appendTo(side_col);
+        
+        //sponsors
+          //1
+        sample1_img.appendTo(sample1li);
+        sample1_text.appendTo(sample1li);
+        sample1li.appendTo(ad_list);
+          //2
+        sample2_img.appendTo(sample2li);
+        sample2_text.appendTo(sample2li);
+        sample2li.appendTo(ad_list);
+          //3
+        sample3_img.appendTo(sample3li);
+        sample3_text.appendTo(sample3li);
+        sample3li.appendTo(ad_list);
+
+        ad_list.appendTo(spnsrlist_wrapper);
+        spnsrlist_wrapper.appendTo(ad_wrapper);
+        ad_wrapper.appendTo(side_col);
+        
+        //supporting feature in sidecol
+        loadReadingContent().appendTo(side_col);
+        
+        side_col.appendTo(sb);
+        sb.appendTo(document.body);
+      }
+      
+      var loadReadingContent = function() {
+        var wg = q.create("<div>").setAttribute("class", "so wg");
+        var d1 = q.create("<div>").setHtml('<a style="border: 0px none;" href="#"><img alt="Digital Adaptation by Paul Boag" src="./images/d1.png"></a><p>Nothing is more frustrating than <strong>stubborn management</strong>. That\'s why we published <a href="#">Digital Adaptation</a>, a new book ....<br />&nbsp;</p>');
+        var d2 = q.create("<div>").setHtml('<a href="#" style="border: 0px none;"><img alt="Smashing Printed Books" src="images/d2.png"></a><p>It\'s done. The <a href="#">Smashing Book #4</a>, our brand new book with smart <strong>front-end techniques</strong> and design approaches. Written by ....<br />&nbsp;</p>');
+        var d3 = q.create("<div>").setHtml('<a href="#" style="border: 0px none;"><img alt="Smashing Printed Books" src="images/d3.png"></a><p>Hungry for more content? Over 60 <strong>eBooks</strong> are waiting ....<br />&nbsp;</p>');
+        d1.appendTo(wg);
+        d2.appendTo(wg);
+        d3.appendTo(wg);
+        return wg;
+      }
+      appendNav();
+      q.create("<div>").addClass("cc").appendTo(document.body);
+      appendMainStack();
+      appendRightCol();
+      //nav.appendTo(document.body);
+    }
+  </script>
+</html>
